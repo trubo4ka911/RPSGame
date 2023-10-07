@@ -1,3 +1,5 @@
+package game;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -24,24 +26,28 @@ public class GameLogic {
         return choice;
     }
 
-    public int generateComputerChoice() {
-        return random.nextInt(3) + 1;
+    public String getUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
     }
 
-    public void playRound(int playerChoice, int computerChoice) {
-        System.out.println("You chose: " + choiceToString(playerChoice));
-        System.out.println("Computer chose: " + choiceToString(computerChoice));
+    public String playRound(int playerChoice, int computerChoice) {
+        String result = "You chose: " + choiceToString(playerChoice) + "\n";
+        result += "Computer chose: " + choiceToString(computerChoice) + "\n";
 
         if (playerChoice == computerChoice) {
-            System.out.println("It's a draw!");
+            result += "It's a draw!";
         } else if ((playerChoice == 1 && computerChoice == 3) ||
                 (playerChoice == 2 && computerChoice == 1) ||
                 (playerChoice == 3 && computerChoice == 2)) {
-            System.out.println("You win this round!");
+            result += "You win this round!";
         } else {
-            System.out.println("Computer wins this round.");
+            result += "Computer wins this round.";
         }
+
+        return result;
     }
+
 
     public void declareOverallWinner(int playerScore, int computerScore) {
         if (playerScore > computerScore) {
